@@ -1,0 +1,485 @@
+/* ====== כללי ====== */
+:root {
+  /* משתני צבעים */
+  --primary-color: #3498db;
+  --primary-dark: #2980b9;
+  --error-color: #e74c3c;
+  --error-dark: #c0392b;
+  --bg-color: #f5f7fa;
+  --text-color: #333;
+  --text-dark: #2c3e50;
+  --text-muted: #718096;
+  --border-color: #ddd;
+  --shadow-light: 0 2px 8px rgba(0, 0, 0, 0.08);
+  --shadow-medium: 0 2px 10px rgba(0, 0, 0, 0.1);
+  --shadow-hover: 0 4px 12px rgba(0, 0, 0, 0.12);
+  
+  /* משתני מרווחים */
+  --space-xs: 8px;
+  --space-s: 12px;
+  --space-m: 16px;
+  --space-l: 20px;
+  --space-xl: 30px;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  direction: rtl;
+  font-size: 16px;
+}
+
+body {
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  background-color: var(--bg-color);
+  color: var(--text-color);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+.container {
+  width: 100%;
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 var(--space-l);
+}
+
+/* ====== טפסי התחברות והרשמה ====== */
+.auth-container {
+  max-width: 500px;
+  margin: 60px auto;
+  padding: var(--space-xl);
+  background-color: #fff;
+  border-radius: 8px;
+  box-shadow: var(--shadow-medium);
+}
+
+.auth-container h2 {
+  text-align: center;
+  margin-bottom: 24px;
+  color: var(--text-dark);
+}
+
+.form-group {
+  margin-bottom: var(--space-l);
+}
+
+.form-group label {
+  display: block;
+  margin-bottom: var(--space-xs);
+  font-weight: 500;
+  color: var(--text-dark);
+}
+
+.form-group input,
+.form-group textarea,
+.form-group select {
+  width: 100%;
+  padding: var(--space-s);
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 16px;
+  transition: border-color 0.3s ease;
+  background-color: #fff;
+}
+
+.form-group input:focus,
+.form-group textarea:focus,
+.form-group select:focus {
+  border-color: var(--primary-color);
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
+}
+
+.error-message {
+  color: var(--error-color);
+  margin-top: 10px;
+  margin-bottom: var(--space-l);
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.auth-links {
+  margin-top: var(--space-l);
+  text-align: center;
+}
+
+.auth-links a {
+  color: var(--primary-color);
+  text-decoration: none;
+  transition: color 0.2s ease;
+}
+
+.auth-links a:hover {
+  text-decoration: underline;
+  color: var(--primary-dark);
+}
+
+/* ====== כפתורים ====== */
+.primary-btn {
+  display: inline-block;
+  padding: 10px 20px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  border-radius: 4px;
+  font-size: 16px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+  text-align: center;
+}
+
+.primary-btn:hover {
+  background-color: var(--primary-dark);
+}
+
+.primary-btn:active {
+  transform: translateY(1px);
+}
+
+/* עבור טפסי התחברות והרשמה - כפתור רוחב מלא */
+form .primary-btn {
+  display: block;
+  width: 100%;
+  padding: var(--space-s);
+}
+
+.logout-btn {
+  background-color: var(--error-color);
+  color: white;
+  padding: 8px 16px;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: background-color 0.3s;
+}
+
+.logout-btn:hover {
+  background-color: var(--error-dark);
+}
+
+.edit-btn, .delete-btn {
+  background-color: transparent;
+  padding: 6px 12px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  margin-left: var(--space-xs);
+  transition: all 0.3s;
+}
+
+.edit-btn {
+  color: var(--primary-color);
+  border-color: var(--primary-color);
+}
+
+.edit-btn:hover {
+  background-color: var(--primary-color);
+  color: white;
+}
+
+.delete-btn {
+  color: var(--error-color);
+  border-color: var(--error-color);
+}
+
+.delete-btn:hover {
+  background-color: var(--error-color);
+  color: white;
+}
+
+.cancel-btn {
+  background-color: #95a5a6;
+  color: white;
+  padding: var(--space-s);
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.cancel-btn:hover {
+  background-color: #7f8c8d;
+}
+
+/* ====== דף המשימות ====== */
+header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: var(--space-l) 0;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #eee;
+}
+
+header h2 {
+  color: var(--text-dark);
+  margin: 0;
+  font-size: 24px;
+}
+
+.filters {
+  margin: var(--space-l) 0;
+}
+
+.filters select {
+  padding: 10px;
+  border: 1px solid var(--border-color);
+  border-radius: 4px;
+  font-size: 14px;
+  min-width: 200px;
+  appearance: none;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='12' height='12' viewBox='0 0 12 12'%3E%3Cpath fill='%233498db' d='M10.293 3.293L6 7.586 1.707 3.293A1 1 0 00.293 4.707l5 5a1 1 0 001.414 0l5-5a1 1 0 10-1.414-1.414z'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: left 10px center;
+  background-size: 12px;
+  padding-left: 30px;
+}
+
+.tasks-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+  gap: var(--space-l);
+  margin-top: var(--space-xl);
+}
+
+.task-item {
+  background-color: white;
+  border-radius: 8px;
+  padding: var(--space-l);
+  box-shadow: var(--shadow-light);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #eee;
+}
+
+.task-item:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.task-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: var(--space-s);
+}
+
+.task-title {
+  font-size: 18px;
+  color: var(--text-dark);
+  margin: 0;
+  font-weight: 600;
+}
+
+.task-status {
+  padding: 4px 10px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: 600;
+  display: inline-block;
+}
+
+.task-status.open {
+  background-color: #ffeaa7;
+  color: #b7791f;
+}
+
+.task-status.in-progress {
+  background-color: #bee3f8;
+  color: #2b6cb0;
+}
+
+.task-status.completed {
+  background-color: #c6f6d5;
+  color: #2f855a;
+}
+
+.task-description {
+  color: #4a5568;
+  margin-bottom: 15px;
+  line-height: 1.5;
+  font-size: 14px;
+}
+
+.task-dates {
+  margin-bottom: 15px;
+  color: var(--text-muted);
+  font-size: 13px;
+}
+
+.task-actions {
+  display: flex;
+  justify-content: flex-end;
+  margin-top: 10px;
+}
+
+.no-tasks {
+  grid-column: 1 / -1;
+  text-align: center;
+  padding: 40px;
+  color: var(--text-muted);
+  font-size: 16px;
+  background-color: white;
+  border-radius: 8px;
+  box-shadow: var(--shadow-light);
+}
+
+/* ====== מודאל ====== */
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 1000;
+  overflow: auto;
+  backdrop-filter: blur(2px);
+  -webkit-backdrop-filter: blur(2px);
+}
+
+.modal-content {
+  background-color: #fff;
+  margin: 50px auto;
+  padding: var(--space-xl);
+  width: 90%;
+  max-width: 500px;
+  border-radius: 8px;
+  position: relative;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.15);
+  animation: modalFadeIn 0.3s ease;
+}
+
+@keyframes modalFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.close-modal {
+  position: absolute;
+  top: 15px;
+  left: 15px;
+  font-size: 24px;
+  cursor: pointer;
+  color: #a0aec0;
+  transition: color 0.2s ease;
+  background: none;
+  border: none;
+  padding: 0;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.close-modal:hover {
+  color: #4a5568;
+}
+
+.modal h3 {
+  margin-bottom: var(--space-l);
+  color: var(--text-dark);
+  font-weight: 600;
+}
+
+.form-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: var(--space-xl);
+}
+
+.form-actions button {
+  width: 48%;
+}
+
+/* ====== רספונסיביות ====== */
+@media (max-width: 768px) {
+  :root {
+    /* התאמת מרווחים לגרסה מובייל */
+    --space-xl: 20px;
+  }
+  
+  .tasks-list {
+    grid-template-columns: 1fr;
+  }
+  
+  header {
+    flex-direction: column;
+    align-items: stretch;
+    gap: 15px;
+  }
+  
+  header h2 {
+    margin-bottom: 15px;
+    text-align: center;
+  }
+  
+  header .primary-btn,
+  header .logout-btn {
+    width: 100%;
+    text-align: center;
+  }
+  
+  .modal-content {
+    width: 95%;
+    margin: 20px auto;
+    padding: var(--space-l);
+  }
+  
+  .task-actions {
+    flex-direction: column;
+    gap: 10px;
+  }
+  
+  .task-actions button {
+    width: 100%;
+    margin-left: 0;
+  }
+}
+
+/* ====== תמיכה בדפדפנים ישנים ====== */
+@supports not (backdrop-filter: blur(2px)) {
+  .modal {
+    background-color: rgba(0, 0, 0, 0.7);
+  }
+}
+
+/* ====== תמיכה במצב חשוך (אם רוצים) ====== */
+@media (prefers-color-scheme: dark) {
+  body.dark-mode-support {
+    --bg-color: #1a202c;
+    --text-color: #e2e8f0;
+    --text-dark: #f7fafc;
+    --text-muted: #a0aec0;
+    --border-color: #2d3748;
+    
+    background-color: var(--bg-color);
+    color: var(--text-color);
+  }
+  
+  body.dark-mode-support .auth-container,
+  body.dark-mode-support .task-item,
+  body.dark-mode-support .modal-content,
+  body.dark-mode-support .no-tasks {
+    background-color: #2d3748;
+    border-color: #4a5568;
+  }
+}
+

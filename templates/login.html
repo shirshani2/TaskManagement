@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en" dir="rtl">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>התחברות - מנהל המשימות</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=1.2">
+</head>
+<body>
+  <div class="auth-container">
+    <h2>התחברות למערכת</h2>
+    <form id="loginForm">
+      <div class="form-group">
+        <label for="email">אימייל</label>
+        <input type="email" id="email" placeholder="הכנס את האימייל שלך" required />
+      </div>
+      <div class="form-group">
+        <label for="password">סיסמה</label>
+        <input type="password" id="password" placeholder="הכנס את הסיסמה שלך" required />
+      </div>
+      <p id="errorMessage" class="error-message"></p>
+      <button type="submit" class="primary-btn">התחברות</button>
+    </form>
+    <div class="auth-links">
+      <p>עדיין לא רשום? <a href="/register">הירשם כאן</a></p>
+    </div>
+  </div>
+
+  <script>
+    document.addEventListener("DOMContentLoaded", () => {
+      const loginForm = document.getElementById("loginForm");
+      const errorMessage = document.getElementById("errorMessage");
+      
+      // בדיקה אם המשתמש כבר מחובר
+      const token = localStorage.getItem("token");
+      if (token) {
+        window.location.href = "/tasks";
+      }
+      
+      loginForm.addEventListener("submit", async (event) => {
+        event.preventDefault();
+        
+        const email = document.getElementById("email").value;
+        const password = document.getElementById("password").value;
+        
+        // שליחת בקשת התחברות ל-API
+        try {
+          const response = await fetch("/api/auth/login", {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify({ email, password }),
+          });
+          
+          const data = await response.json();
+          
+          if (response.ok) {
+            // שמירת טוקן ומעבר לדף המשימות
+            localStorage.setItem("token", data.access_token);
+            window.location.href = "/tasks";
+          } else {
+            // הצגת שגיאה למשתמש
+            errorMessage.textContent = data.error || "אימייל או סיסמה שגויים";
+          }
+        } catch (error) {
+          errorMessage.textContent = "אירעה שגיאה, אנא נסה שוב מאוחר יותר";
+          console.error("Login error:", error);
+        }
+      });
+    });
+  </script>
+</body>
+</html>
