@@ -5,5 +5,6 @@ cluster = MongoClient("mongodb+srv://shirshani17:1234@cluster0.pvsjjnv.mongodb.n
 db = cluster["taskManager"]
 users_collection = db["users"]
 tasks_collection = db["tasks"]
+ai_collection = db["ai_recommendations"] 
 
 

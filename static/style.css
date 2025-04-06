@@ -483,3 +483,37 @@ header h2 {
   }
 }
 
+.task-details {
+  margin-top: 10px;
+  margin-bottom: 6px;
+}
+
+.task-details-title {
+  font-size: 13px;
+  font-weight: 500;
+  color: #666;
+  margin-bottom: 4px;
+}
+
+.task-details-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+}
+
+.tag {
+  font-size: 13px;
+  padding: 4px 10px;
+  border-radius: 20px;
+  display: inline-block;
+  color: #fff;
+  font-weight: 500;
+}
+
+.tag-category {
+  background-color: #007bff;
+}
+
+.tag-time {
+  background-color: #6c757d;
+}
