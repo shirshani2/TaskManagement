@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="he" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <title>המלצה חכמה לניהול זמן</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}?v=1.2">
+  <!-- גופנים מודרניים תואמים -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+</head>
+<body class="recommendation-page">
+  <div class="container">
+    <header>
+      <h2> המלצה מבוססת על הספר ׳הרגלים אטומיים׳</h2>
+      <div class="nav-actions">
+        <button onclick="window.location.href='/tasks'" class="primary-btn">⬅ חזרה למשימות</button>
+      </div>
+    </header>
+
+    <section class="hero-section">
+      <p>על סמך המשימות הפתוחות שלך, הנה המלצה לניהול זמן שתעזור לך להתקדם ביעילות 💡</p>
+    </section>
+
+    <section class="recommendation-wrapper">
+      <div id="recommendationContent" class="recommendation-box">
+        טוען המלצה...
+      </div>
+    </section>
+  </div>
+
+  <script src="{{ url_for('static', filename='js/recommendation.js') }}" defer></script>
+</body>
+</html>

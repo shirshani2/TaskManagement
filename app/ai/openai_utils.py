@@ -40,6 +40,7 @@ def ai_recommendation(tasks):
         - תתייחס למשימות עצמן, לא תתן טיפים כלליים.
         - תציין דוגמאות מתוך המשימות שכתבתי.
         - תענה בעברית בלבד.
+        - ההמלצות צריכות להיות מבוססות על הספר atomic habits (ותציין את זה)
         """
 
     response = client.chat.completions.create(

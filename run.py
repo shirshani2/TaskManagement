@@ -20,6 +20,10 @@ def register():
 def tasks():
     return render_template("tasks.html")
 
+@app.route('/recommendation')
+def recommendation_page():
+    return render_template('recommendation.html')
+
 
 
 app.config['JWT_SECRET_KEY'] = 'supersecretjwtkey'

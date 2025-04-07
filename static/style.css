@@ -517,3 +517,52 @@ header h2 {
 .tag-time {
   background-color: #6c757d;
 }
+
+/* ====== עמוד המלצה ====== */
+
+header {
+  padding: 1.5rem 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  margin-bottom: 2rem;
+}
+
+header h2 {
+  font-size: 1.8rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.nav-actions {
+  display: flex;
+  gap: 1rem;
+  align-items: center;
+}
+
+.recommendation-wrapper {
+  margin-bottom: 3rem;
+}
+
+.recommendation-box {
+  background-color: white;
+  border-radius: 8px;
+  padding: var(--space-l);
+  box-shadow: var(--shadow-light);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+  border: 1px solid #eee;
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--text-dark);
+}
+
+.recommendation-box:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-hover);
+}
+
+.recommendation-page  {
+  margin-top: 20px;
+  background-color: rgb(245, 244, 244);
+}

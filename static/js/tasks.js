@@ -73,7 +73,7 @@ function checkAuth() {
       
         const title = document.createElement("div");
         title.classList.add("task-details-title");
-        title.innerHTML = "הערכה אוטומטית באמצעות AI<br><small>ניתן לעדכן בלחיצה על \"ערוך\"</small>";
+        title.innerHTML = "נוצר אוטומטית באמצעות AI<br><small>ניתן לעדכן בלחיצה על \"ערוך\"</small>";
         detailsWrapper.appendChild(title);
       
         const tagsRow = document.createElement("div");
@@ -265,7 +265,9 @@ function checkAuth() {
   // אירועים
   document.addEventListener("DOMContentLoaded", () => {
     getTasks();
-  
+    document.getElementById("recommendationBtn").addEventListener("click", () => {
+      window.location.href = "/recommendation";
+    });
     document.getElementById("addTaskBtn").addEventListener("click", openAddModal);
     document.getElementById("logoutBtn").addEventListener("click", logout);
     document.getElementById("statusFilter").addEventListener("change", getTasks);
