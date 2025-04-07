@@ -1,28 +1,30 @@
 from flask import Blueprint, request, jsonify
-from .openai_utils import analyze_task_description
-from app.models import ai_collection  
-from datetime import datetime
+from flask_jwt_extended import jwt_required, get_jwt_identity
+import openai
+from app.models import tasks_collection
+from .openai_utils import ai_recommendation
+
 
 ai_bp = Blueprint('ai', __name__)
 
-@ai_bp.route('/recommend', methods=['POST'])
-def recommend():
-    data = request.get_json()
-    description = data.get('description')
 
-    if not description:
-        return jsonify({'error': 'Missing task description'}), 400
+@ai_bp.route('/recommend', methods=['POST'])
+@jwt_required()
+def create_recommendation():
+    user_id = get_jwt_identity()
+
+    # שליפת כל המשימות של המשתמש
+    user_tasks = list(tasks_collection.find({"user_id": user_id}))
+
+    if not user_tasks:
+        return jsonify({'message': 'No tasks found for user.'}), 404
+
+    # בניית מחרוזת המתארת את כל המשימות
+    task_summary = "\n".join([f"- {task.get('title', '')}: {task.get('description', '')}" for task in user_tasks])
 
     try:
-        analysis = analyze_task_description(description)
-
-        # שמירת ההמלצה ל-MongoDB
-        ai_collection.insert_one({
-            "description": description,
-            "analysis": analysis,
-            "timestamp": datetime.utcnow()
-        })
-
-        return jsonify({'analysis': analysis})
+       recommendation = ai_recommendation(task_summary)
+       return jsonify({'recommendation': recommendation}), 200
+    
     except Exception as e:
         return jsonify({'error': str(e)}), 500

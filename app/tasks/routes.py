@@ -38,7 +38,7 @@ def create_task():
 
     # ✨ הרצת AI על התיאור
     try:
-        ai_result = analyze_task_description(description or "משימה כללית")
+        ai_result = analyze_task_description(title, description)
         category = ai_result.get("category")
         time_estimate = ai_result.get("time_estimate")
 
