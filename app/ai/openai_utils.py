@@ -51,5 +51,27 @@ def ai_recommendation(tasks):
 
     content = response.choices[0].message.content
     return content
+def generate_tasks_summary(tasks):
+    prompt = f"""
+    לפניך רשימת משימות פתוחות של משתמש:
+
+    {tasks}
+
+    אנא צור סיכום שבועי חכם של המשימות הכולל:
+    1. סקירה קצרה של כלל המשימות הפתוחות
+    2. זיהוי דפוסים או מגמות
+    3. טיפ אחד שימושי לניהול משימות טוב יותר בהתבסס על רשימת המשימות הספציפית
+
+    כתוב את התשובה בעברית בלבד, בפורמט ידידותי ובאופן אישי למשתמש.
+    """
+
+    response = client.chat.completions.create(
+        model="gpt-3.5-turbo",
+        messages=[{"role": "user", "content": prompt}],
+        temperature=0.7
+    )
+
+    content = response.choices[0].message.content
+    return content
 
 
