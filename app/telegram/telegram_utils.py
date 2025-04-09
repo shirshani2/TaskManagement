@@ -24,8 +24,9 @@ def send_weekly_summaries():
     for user in users:
         chat_id = user["telegram_chat_id"]
         user_id = user["_id"]
-
-        open_tasks = list(tasks_collection.find({"user_id": user_id, "status": "open"}))
+        user_id_str = str(user_id)
+        open_tasks = list(tasks_collection.find({"user_id": user_id_str, "status": "open"}))
+    
 
         if not open_tasks:
             print(f"📭 אין משימות פתוחות למשתמש {chat_id}")

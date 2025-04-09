@@ -35,12 +35,14 @@ def register():
     }
 
     result = users_collection.insert_one(user)
+    access_token = create_access_token(identity=str(result.inserted_id))
 
+    # ✅ החזרת הטוקן + הקוד
     return jsonify({
-        "message": "User registered",
-        "id": str(result.inserted_id),
-        "telegram_verification_code": verification_code  
-    }), 201
+        "access_token": access_token,
+        "telegram_verification_code": verification_code
+    }), 200
+    
 
 # 🟢 פונקציית login צריכה להיות בחוץ!
 @auth_bp.route('/login', methods=['POST'])

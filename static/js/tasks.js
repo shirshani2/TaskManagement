@@ -18,7 +18,7 @@ async function getTasks() {
       },
     });
 
-    if (!res.ok) {
+    if (!res.ok && res.status !== 204) {
       throw new Error("Failed to fetch tasks");
     }
 
@@ -135,10 +135,13 @@ function openAddModal() {
   // 🧠 קריאה מיידית ל-AI גם אם התיאור ריק
   const description = document.getElementById("description").value.trim() || "משימה כללית";
 
+  const token = localStorage.getItem("token");
+
   fetch("/ai/recommend", {
     method: "POST",
     headers: {
-      "Content-Type": "application/json"
+      "Content-Type": "application/json",
+      "Authorization": `Bearer ${token}`
     },
     body: JSON.stringify({ description })
   })
@@ -148,7 +151,7 @@ function openAddModal() {
       document.getElementById("timeEstimate").value = data.time_estimate || "";
     })
     .catch(() => {
-      document.getElementById("category").value = "שגיאה";
+      document.getElementById("category").value = "";
       document.getElementById("timeEstimate").value = "";
     });
 }
@@ -305,11 +308,11 @@ document.addEventListener("DOMContentLoaded", () => {
         document.getElementById("category").value = data.category || "";
         document.getElementById("timeEstimate").value = data.time_estimate || "";
       } else {
-        document.getElementById("category").value = "שגיאה";
+        document.getElementById("category").value = "";
         document.getElementById("timeEstimate").value = "";
       }
     } catch (error) {
-      document.getElementById("category").value = "שגיאה";
+      document.getElementById("category").value = "";
       document.getElementById("timeEstimate").value = "";
     }
   });
