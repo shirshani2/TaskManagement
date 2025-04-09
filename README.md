@@ -81,7 +81,7 @@ This will run both the **Flask API** and the **Telegram bot** in separate contai
 Make sure your `.env` file includes all required keys.
 
 Then open your browser at: [http://localhost:5001](http://localhost:5001)
-## 📡 Updated API Documentation (Based on Your Real Code)
+## 📡 Updated API Documentation 
 
 ### 🔐 Auth
 
