@@ -200,7 +200,7 @@ Visit: [http://localhost:5001](http://localhost:5001)
 - Telegram bot fully supports Hebrew language
 - All bot messages are intuitive and accessible for Israeli users
 
----
+
 
 
 
