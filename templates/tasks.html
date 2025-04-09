@@ -9,84 +9,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    body {
-      font-family: 'Inter', sans-serif;
-      line-height: 1.6;
-      color: #333;
-      background-color: #f9f9f9;
-    }
-    .container {
-      max-width: 1200px;
-      margin: 0 auto;
-      padding: 0 20px;
-    }
-    header {
-      padding: 1.5rem 0;
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      border-bottom: 1px solid rgba(0, 0, 0, 0.08);
-      margin-bottom: 2rem;
-    }
-    header h2 {
-      font-size: 1.8rem;
-      font-weight: 700;
-      margin: 0;
-    }
-    .nav-actions {
-      display: flex;
-      gap: 1rem;
-      align-items: center;
-    }
-    .primary-btn, .logout-btn {
-      border-radius: 6px;
-      padding: 0.6rem 1.2rem;
-      font-weight: 500;
-      transition: all 0.2s ease;
-    }
-    .primary-btn:hover, .logout-btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-    }
-    .hero-section {
-      margin-bottom: 2.5rem;
-      padding: 2rem 0;
-    }
-    .hero-section p {
-      font-size: 1.1rem;
-      color: #666;
-      max-width: 600px;
-    }
-    .filters {
-      margin-bottom: 1.5rem;
-    }
-    select {
-      border-radius: 6px;
-      padding: 0.5rem 1rem;
-      border: 1px solid rgba(0, 0, 0, 0.1);
-      background-color: white;
-    }
-    .task-item {
-      background-color: white;
-      border-radius: 8px;
-      box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
-      padding: 1.5rem;
-      margin-bottom: 1rem;
-      transition: transform 0.2s ease;
-    }
-    .task-item:hover {
-      transform: translateY(-2px);
-    }
-    .task-actions button {
-      border-radius: 6px;
-      padding: 0.4rem 0.8rem;
-    }
-    .modal-content {
-      border-radius: 10px;
-      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-    }
-  </style>
+  
 </head>
 <body>
   <div class="container">
@@ -99,7 +22,7 @@
     </header>
 
     <section class="hero-section">
-      <p>נהל את המשימות שלך ביעילות, עקוב אחר ההתקדמות וסיים את העבודה בזמן.</p>
+      <p>ברוכים הבאים למערכת לניהול משימות חכמה מבוססת בינה מלאכותית 🚀</p>
     </section>
 
     <div class="app-controls">
@@ -186,6 +109,21 @@
       </div>
     </div>
   </div>
+  <template id="taskTemplate">
+    <div class="task-item">
+      <div class="task-header">
+        <h3 class="task-title"></h3>
+        <div class="task-status"></div>
+      </div>
+      <p class="task-description"></p>
+      <div class="due-date task-dates"></div>
+      <div class="task-actions">
+        <button class="edit-btn">ערוך</button>
+        <button class="delete-btn">מחק</button>
+      </div>
+    </div>
+  </template>
+  
 
   <script src="{{ url_for('static', filename='js/tasks.js') }}?v=1.0" defer></script>
 </body>

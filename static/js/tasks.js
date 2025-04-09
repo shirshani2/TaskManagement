@@ -18,7 +18,7 @@ async function getTasks() {
       },
     });
 
-    if (!res.ok && res.status !== 204) {
+    if (!res.ok) {
       throw new Error("Failed to fetch tasks");
     }
 
@@ -59,13 +59,38 @@ function displayTasks(tasks) {
       taskElement.querySelector(".task-description").style.display = "none";
     }
 
+    const taskItem = taskElement.querySelector(".task-item");
+    taskItem.dataset.id = task._id;
+
+    // 🎨 צבע רקע לפי מצב תאריך יעד
     if (task.due_date) {
       const dueDate = new Date(task.due_date);
+      const today = new Date();
+      today.setHours(0, 0, 0, 0);
+    
+      const timeDiff = dueDate.setHours(0, 0, 0, 0) - today.getTime(); // השוואת תאריכים רק לפי יום
+      const oneDay = 24 * 60 * 60 * 1000;
+    
+      // ניקוי רקע קודם אם יש
+      taskItem.classList.remove("bg-red", "bg-orange", "bg-yellow", "bg-blue", "bg-green");
+    
+      if (task.status === "completed") {
+        taskItem.classList.add("bg-green"); // הושלם
+      } else if (timeDiff < 0) {
+        taskItem.classList.add("bg-red"); // עבר הזמן
+      } else if (timeDiff === 0) {
+        taskItem.classList.add("bg-orange"); // היום
+      } else if (timeDiff === oneDay) {
+        taskItem.classList.add("bg-yellow"); // מחר
+      } else {
+        taskItem.classList.add("bg-blue"); // עתידי
+      }
+    
       taskElement.querySelector(".due-date").textContent = `תאריך יעד: ${dueDate.toLocaleDateString()}`;
     } else {
       taskElement.querySelector(".due-date").style.display = "none";
     }
-
+    
     // 🧠 קטגוריה וזמן מוערך
     if (task.category || task.time_estimate) {
       const detailsWrapper = document.createElement("div");
@@ -96,12 +121,8 @@ function displayTasks(tasks) {
       detailsWrapper.appendChild(tagsRow);
     
       const actions = taskElement.querySelector(".task-actions");
-      taskElement.querySelector(".task-item").insertBefore(detailsWrapper, actions);
+      taskItem.insertBefore(detailsWrapper, actions);
     }
-    
-
-    const taskItem = taskElement.querySelector(".task-item");
-    taskItem.dataset.id = task._id;
 
     taskElement.querySelector(".edit-btn").addEventListener("click", () => {
       openEditModal(task);
@@ -114,6 +135,8 @@ function displayTasks(tasks) {
     tasksList.appendChild(taskElement);
   });
 }
+
+
 
 // המרת קוד סטטוס לטקסט בעברית
 function getStatusText(status) {
@@ -256,8 +279,24 @@ async function deleteTask(taskId) {
 
 // הצגת הודעה למשתמש
 function showMessage(message, type = "info") {
-  alert(message);
+  const toast = document.createElement("div");
+  toast.className = "toast";
+  if (type === "success") toast.style.backgroundColor = "#2ecc71";
+  if (type === "error") toast.style.backgroundColor = "#e74c3c";
+  toast.textContent = message;
+
+  document.body.appendChild(toast);
+
+  // הוספת המחלקה שמציגה את ההודעה
+  setTimeout(() => toast.classList.add("show"), 10);
+
+  // הסתרה אוטומטית אחרי 3 שניות
+  setTimeout(() => {
+    toast.classList.remove("show");
+    setTimeout(() => toast.remove(), 300);
+  }, 3000);
 }
+
 
 // התנתקות
 function logout() {

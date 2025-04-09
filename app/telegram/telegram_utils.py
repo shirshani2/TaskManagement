@@ -36,7 +36,7 @@ def send_weekly_summaries():
 
         try:
             summary = generate_tasks_summary(task_summary)
-            send_telegram_message(chat_id, "🧠 סיכום משימות שבועי חכם:\n\n" + summary)
+            send_telegram_message(chat_id, "🧠 סיכום משימות שבועי חכם מבוסס AI \n\n" + summary)
             print(f"✅ נשלח סיכום ל־{chat_id}")
         except Exception as e:
             print(f"❌ שגיאה בשליחת סיכום ל־{chat_id}: {str(e)}")
