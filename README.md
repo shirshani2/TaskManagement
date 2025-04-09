@@ -50,7 +50,6 @@ python -m app.telegram.telegram_bot
 
 Then open your browser at: [http://localhost:5000](http://localhost:5000)
 
----
 
 ### 🐳 Option 2: Run with Docker
 
