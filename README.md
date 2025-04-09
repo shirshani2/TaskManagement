@@ -41,12 +41,11 @@ TELEGRAM_BOT_TOKEN=your_telegram_token
 flask run
 ```
 
-6. **Run the Telegram bot**
-
+6. **Run the Telegram bot**  
 In a separate terminal window, run the Telegram bot:
-
 ```bash
 python -m app.telegram.telegram_bot
+```
 
 Then open your browser at: [http://localhost:5000](http://localhost:5000)
 
@@ -54,7 +53,9 @@ Then open your browser at: [http://localhost:5000](http://localhost:5000)
 
 ### 🐳 Option 2: Run with Docker
 
-1. **Install Docker**: https://www.docker.com/products/docker-desktop
+1. **Install Docker**  
+Download and install Docker Desktop from:  
+[https://www.docker.com/products/docker-desktop](https://www.docker.com/products/docker-desktop)
 
 2. **Clone the repository**
 ```bash
@@ -62,18 +63,22 @@ git clone https://github.com/shirshani2/TaskManagement.git
 cd TaskManagement
 ```
 
-3. **Create a `.env` file** (same as above)
+3. **Create a `.env` file**
+```
+MONGO_URI=your_mongo_uri
+OPENAI_API_KEY=your_openai_api_key
+TELEGRAM_BOT_TOKEN=your_telegram_token
+```
 
-4. **Run the app**
+4. **Run the app and Telegram bot**
 ```bash
 docker-compose up --build
 ```
-This will run both the Flask API and the Telegram bot in separate containers
 
-Visit: [http://localhost:5001](http://localhost:5001)
+This will run both the **Flask API** and the **Telegram bot** in separate containers.  
+Make sure your `.env` file includes all required keys.
 
----
-
+Then open your browser at: [http://localhost:5001](http://localhost:5001)
 ## 📡 Updated API Documentation (Based on Your Real Code)
 
 ### 🔐 Auth

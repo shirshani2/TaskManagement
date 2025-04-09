@@ -78,7 +78,7 @@ function displayTasks(tasks) {
       // ניקוי רקע קודם אם יש
       taskItem.classList.remove("bg-red", "bg-orange", "bg-yellow", "bg-blue", "bg-green");
     
-      if (timeDiff > 0) {
+      if (timeDiff < 0) {
         taskItem.classList.add("bg-red"); // עבר הזמן
       } else if (timeDiff === 0) {
         taskItem.classList.add("bg-orange"); // היום

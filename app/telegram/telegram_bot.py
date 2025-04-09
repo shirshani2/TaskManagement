@@ -51,7 +51,16 @@ def send_tasks_summary(message):
         bot.send_message(chat_id, f"❌ אירעה שגיאה: {str(e)}")
 @bot.message_handler(commands=['start'])
 def send_welcome(message):
-    bot.reply_to(message, "👋 היי! שלח/י לי את קוד האימות שלך כדי לקשר את החשבון.")
+    bot.reply_to(message,
+        "👋 היי! אני הבוט שלך לניהול משימות חכם.\n\n"
+        "📌 כדי להתחיל, שלח/י לי את קוד האימות שלך מהאפליקציה כדי לקשר את החשבון.\n\n"
+        "לאחר קישור החשבון תוכל/י להשתמש ביכולות הבאות:\n"
+        "🧠 */summary* – לקבל סיכום משימות פתוחות חכם מבוסס AI\n"
+        "🔔 לקבל התראה כאשר משימה מתווספת או מסומנת כבוצעה\n"
+        "📅 לקבל סיכום שבועי אוטומטי של המשימות שלך\n"
+        "⁉️ אם שלחת לי משהו שהוא לא פקודה – אני מניח שזה קוד אימות\n\n"
+        "בהצלחה! 🚀"
+    )
 
 
 @bot.message_handler(func=lambda message: True)
