@@ -306,6 +306,64 @@ function logout() {
   window.location.href = "/";
 }
 
+async function fetchTelegramCode() {
+  const token = localStorage.getItem("token");
+
+  try {
+    const res = await fetch("/api/auth/telegram-code", {
+      headers: {
+        "Authorization": `Bearer ${token}`
+      }
+    });
+
+    const data = await res.json();
+
+    if (data.status === "connected") {
+      showMessage("כבר מחובר לטלגרם 🎉");
+      return;
+    }
+
+    if (data.telegram_verification_code) {
+      showTelegramPopup(data.telegram_verification_code);
+    } else {
+      showMessage("לא נמצא קוד טלגרם 🤔");
+    }
+
+  } catch (error) {
+    showMessage("שגיאה בעת שליפת קוד טלגרם 🚫", "error");
+    console.error(error);
+  }
+}
+
+
+function showTelegramPopup(telegramCode) {
+  const popup = document.createElement("div");
+  popup.className = "popup-success";
+
+  popup.innerHTML = `
+    <h3>🤖 קישור לטלגרם</h3>
+    <p>כדי להתחבר לבוט:</p>
+    <ol>
+      <li>לחץ/י <a href="https://web.telegram.org/k/#@ShirsTaskBot" target="_blank">כאן</a></li>
+      <li>שלח/י את המילה <code>START</code></li>
+      <li>שלח/י את הקוד: <strong style="direction:ltr">${telegramCode}</strong></li>
+    </ol>
+    <div style="margin-top: 20px;">
+      <button class="copy-btn" onclick="copyToClipboard(this, '${telegramCode}')">📋 העתק קוד</button>
+      <button class="close-popup">✖ סגור</button>
+    </div>
+  `;
+
+  document.body.appendChild(popup);
+
+  popup.querySelector(".close-popup").addEventListener("click", () => {
+    popup.remove();
+  });
+}
+
+
+
+
 // אירועים
 document.addEventListener("DOMContentLoaded", () => {
   getTasks();
@@ -315,6 +373,8 @@ document.addEventListener("DOMContentLoaded", () => {
   document.getElementById("addTaskBtn").addEventListener("click", openAddModal);
   document.getElementById("logoutBtn").addEventListener("click", logout);
   document.getElementById("statusFilter").addEventListener("change", getTasks);
+  document.getElementById("showTelegramCodeBtn").addEventListener("click", fetchTelegramCode);
+
 
   document.getElementById("taskForm").addEventListener("submit", saveTask);
   document.querySelector(".close-modal").addEventListener("click", () => {

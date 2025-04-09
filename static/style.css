@@ -96,6 +96,11 @@ body {
   box-shadow: 0 0 0 3px rgba(52, 152, 219, 0.1);
 }
 
+.form-group #timeEstimate{
+  background-color: #fff;
+}
+
+
 .error-message {
   color: var(--error-color);
   margin-top: 10px;
@@ -110,7 +115,7 @@ body {
 }
 
 .auth-links a {
-  color: var(--primary-color);
+  color: rgb(45, 162, 221);
   text-decoration: none;
   transition: color 0.2s ease;
 }
@@ -122,6 +127,7 @@ body {
 
 
 /* ====== כפתורים ====== */
+
 .primary-btn,
 .logout-btn {
   display: inline-block;
@@ -135,7 +141,21 @@ body {
   text-align: center;
   transition: background-color 0.3s ease, transform 0.1s ease;
 }
+.secondary-btn {
+  box-shadow: 0 4px 10px rgba(81, 176, 193, 0.08);
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 16px;
+  font-weight: 600;
+  color: rgb(255, 255, 255);
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  text-align: center;
+  transition: background-color 0.3s ease, transform 0.1s ease;
+}
 
+.secondary-btn:hover,
 .primary-btn:hover,
 .logout-btn:hover {
   transform: translateY(-2px);
@@ -148,12 +168,26 @@ body {
 }
 
 /* צבעים */
-.primary-btn {
-  background-color: var(--primary-color);
+.primary-btn#addTaskBtn {
+  background-color: #2f2e2e;
 }
 
+.primary-btn#recommendationBtn {
+  background-color: #2f2e2e;
+}
+.primary-btn {
+  background-color: #2f2e2e;
+}
+
+
+
+.secondary-btn:hover,
 .primary-btn:hover {
   background-color: var(--primary-dark);
+}
+
+.secondary-btn{
+  background: #3498db;
 }
 
 .logout-btn {
@@ -488,7 +522,7 @@ header h2 {
 
 /* משתנים גלובליים */
 :root {
-  --primary-color: #4361ee;
+  --primary-color: #2f2e2e;
   --secondary-color: #3a0ca3;
   --accent-color: #4cc9f0;
   --text-dark: #2b2d42;
@@ -570,7 +604,7 @@ header h2::after {
 }
 
 .primary-btn:hover {
-  background-color: var(--secondary-color);
+  background-color: rgb(65, 180, 206);
   transform: translateY(-2px);
   box-shadow: var(--shadow-md);
 }
@@ -813,11 +847,12 @@ header h2::after {
 }
 
 .tag-category {
-  background-color: #007bff;
+  background-color: #2f2e2e;
 }
 
 .tag-time {
-  background-color: #6c757d;
+  background-color: #ffffff;
+  color: rgb(0, 0, 0);
 }
 
 /* ====== popup הצלחה אחרי רישום ====== */

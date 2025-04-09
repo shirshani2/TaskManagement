@@ -4,9 +4,13 @@ from flask_bcrypt import Bcrypt
 from flask_jwt_extended import create_access_token
 import random
 import string
+from flask_jwt_extended import jwt_required, get_jwt_identity
+from bson import ObjectId
+
 
 auth_bp = Blueprint('auth', __name__)
 bcrypt = Bcrypt()
+
 
 def generate_verification_code(length=6):
     return ''.join(random.choices(string.ascii_uppercase + string.digits, k=length))
@@ -57,3 +61,21 @@ def login():
 
     access_token = create_access_token(identity=str(user['_id']))
     return jsonify(access_token=access_token), 200
+
+
+@auth_bp.route('/telegram-code', methods=['GET'])
+@jwt_required()
+def get_telegram_code():
+    user_id = get_jwt_identity()
+    user = users_collection.find_one({"_id": ObjectId(user_id)})
+
+    if not user:
+        return jsonify({"error": "User not found"}), 404
+
+    if user.get("telegram_chat_id"):
+        return jsonify({"status": "connected"}), 200
+
+    if "telegram_verification_code" in user:
+        return jsonify({"telegram_verification_code": user["telegram_verification_code"]}), 200
+
+    return jsonify({"error": "No Telegram code found"}), 404
