@@ -41,6 +41,13 @@ TELEGRAM_BOT_TOKEN=your_telegram_token
 flask run
 ```
 
+6. **Run the Telegram bot**
+
+In a separate terminal window, run the Telegram bot:
+
+```bash
+python -m app.telegram.telegram_bot
+
 Then open your browser at: [http://localhost:5000](http://localhost:5000)
 
 ---
@@ -61,6 +68,7 @@ cd TaskManagement
 ```bash
 docker-compose up --build
 ```
+This will run both the Flask API and the Telegram bot in separate containers
 
 Visit: [http://localhost:5001](http://localhost:5001)
 

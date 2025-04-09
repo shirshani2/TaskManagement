@@ -16,6 +16,11 @@ services:
     depends_on:
       - mongo
 
+  telegram-bot:
+    build: .
+    command: python -m app.telegram.telegram_bot
+    depends_on:
+      - web
   mongo:
     image: mongo:6
     container_name: mongo-db
