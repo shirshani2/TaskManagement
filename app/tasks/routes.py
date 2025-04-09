@@ -109,8 +109,8 @@ def update_task(task_id):
             return jsonify({"error": "Task not found or not authorized"}), 404
 
         # ✉️ אם המשימה סומנה כבוצעה - שלח עדכון בטלגרם
-        if update.get("status") == "done":
-            user = users_collection.find_one({"_id": user_id})
+        if update.get("status") == "completed":
+            user = users_collection.find_one({"_id": ObjectId(user_id)})
             chat_id = user.get("telegram_chat_id")
             task = tasks_collection.find_one({"_id": ObjectId(task_id)})
             if chat_id and task:

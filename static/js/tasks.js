@@ -62,6 +62,10 @@ function displayTasks(tasks) {
     const taskItem = taskElement.querySelector(".task-item");
     taskItem.dataset.id = task._id;
 
+    if (task.status === "completed") {
+      taskItem.classList.add("bg-green");
+    }
+
     // 🎨 צבע רקע לפי מצב תאריך יעד
     if (task.due_date) {
       const dueDate = new Date(task.due_date);
@@ -74,9 +78,7 @@ function displayTasks(tasks) {
       // ניקוי רקע קודם אם יש
       taskItem.classList.remove("bg-red", "bg-orange", "bg-yellow", "bg-blue", "bg-green");
     
-      if (task.status === "completed") {
-        taskItem.classList.add("bg-green"); // הושלם
-      } else if (timeDiff < 0) {
+      if (timeDiff > 0) {
         taskItem.classList.add("bg-red"); // עבר הזמן
       } else if (timeDiff === 0) {
         taskItem.classList.add("bg-orange"); // היום
@@ -86,7 +88,7 @@ function displayTasks(tasks) {
         taskItem.classList.add("bg-blue"); // עתידי
       }
     
-      taskElement.querySelector(".due-date").textContent = `תאריך יעד: ${dueDate.toLocaleDateString()}`;
+      taskElement.querySelector(".due-date").textContent = `תאריך יעד: ${dueDate.toLocaleDateString('he-IL')}`;
     } else {
       taskElement.querySelector(".due-date").style.display = "none";
     }
