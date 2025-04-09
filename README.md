@@ -3,7 +3,7 @@
 This is a full-stack task management application built with **Flask**, **MongoDB**, and **HTML/CSS/JS**.  
 It includes **AI features using OpenAI's API** and **Telegram integration** for smart notifications.
 
-> this project demonstrates backend and frontend development, RESTful API design, AI integration, and Docker support.
+> this project demonstrates backend and frontend development, RESTful API design, AI integration, and Docker support. /n
 > 🌐 Live Demo : https://drive.google.com/file/d/1Qb-1uwko93PkXo3vcZPDsSyGfJvlQqQq/view?usp=drive_link
 
 ---
