@@ -10,7 +10,7 @@ COPY . .
 RUN pip install --no-cache-dir -r requirements.txt
 
 # פתיחת הפורט שבו Flask רץ
-EXPOSE 5000
+EXPOSE 5001
 
 # הרצת האפליקציה
 CMD ["python", "run.py"]

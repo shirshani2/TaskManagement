@@ -5,6 +5,8 @@ It includes **AI features using OpenAI's API** and **Telegram integration** for 
 
 > this project demonstrates backend and frontend development, RESTful API design, AI integration, and Docker support.
 
+> 🌐 Live Demo : https://drive.google.com/file/d/1Qb-1uwko93PkXo3vcZPDsSyGfJvlQqQq/view?usp=drive_link
+
 ---
 
 ## ⚙️ Setup Instructions
@@ -38,7 +40,7 @@ TELEGRAM_BOT_TOKEN=your_telegram_token
 
 5. **Run the app**
 ```bash
-flask run
+python run.py
 ```
 
 6. **Run the Telegram bot**  
@@ -47,7 +49,7 @@ In a separate terminal window, run the Telegram bot:
 python -m app.telegram.telegram_bot
 ```
 
-Then open your browser at: [http://localhost:5000](http://localhost:5000)
+Then open your browser at: [http://localhost:5001](http://localhost:5001)
 
 ---
 
@@ -79,7 +81,7 @@ This will run both the **Flask API** and the **Telegram bot** in separate contai
 Make sure your `.env` file includes all required keys.
 
 Then open your browser at: [http://localhost:5001](http://localhost:5001)
-## 📡 Updated API Documentation (Based on Your Real Code)
+## 📡 Updated API Documentation 
 
 ### 🔐 Auth
 
@@ -179,7 +181,6 @@ Then open your browser at: [http://localhost:5001](http://localhost:5001)
 ### 🔒 Security & Configuration
 - All API keys and secrets are stored in `.env` file and never hardcoded
 - Secrets loaded using `python-dotenv` (`os.getenv(...)`)
-- CORS configured via `flask-cors` to enable secure communication between frontend and backend
 - Authentication protected via JWT with token-based authorization
 - All user-related queries filtered explicitly by authenticated user
 

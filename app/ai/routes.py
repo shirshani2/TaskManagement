@@ -1,6 +1,5 @@
 from flask import Blueprint, request, jsonify
 from flask_jwt_extended import jwt_required, get_jwt_identity
-import openai
 from app.models import tasks_collection
 from .openai_utils import ai_recommendation
 

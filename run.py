@@ -1,9 +1,12 @@
 from flask import Flask, render_template, send_from_directory
-from flask_cors import CORS
 from flask_jwt_extended import JWTManager
 from app.auth.routes import auth_bp
 from app.tasks.routes import tasks_bp
 from app.ai.routes import ai_bp
+from dotenv import load_dotenv
+import os
+
+load_dotenv()
 
 app = Flask(__name__)
 
@@ -26,11 +29,11 @@ def recommendation_page():
 
 
 
-app.config['JWT_SECRET_KEY'] = 'supersecretjwtkey'
+app.config['JWT_SECRET_KEY'] = os.getenv('JWT_SECRET_KEY')
 app.config['JWT_TOKEN_LOCATION'] = ['headers']
 
 jwt = JWTManager(app)
-CORS(app)
+
 
 # רישום של ה-blueprints
 app.register_blueprint(auth_bp, url_prefix="/api/auth")
@@ -40,5 +43,5 @@ app.register_blueprint(ai_bp, url_prefix='/api/ai')
 
 
 if __name__ == "__main__":
-    app.run(host='0.0.0.0', port=5000, debug=True)
+    app.run(host='0.0.0.0', port=5001, debug=True)
 
